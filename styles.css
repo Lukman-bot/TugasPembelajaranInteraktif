@@ -28,6 +28,7 @@ body {
     width: 90%;
     margin: 0 auto;
     padding: 20px;
+    animation: fadeInContent 0.5s forwards;
 }
 
 .content h2 {
@@ -66,4 +67,34 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+.content h2,
+.content img,
+.content p,
+.content ul {
+    opacity: 0;
+    animation: fadeInElement 1s forwards;
+}
+
+@keyframes fadeInContent {
+    from {
+        transform: translate(50%, -50%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInElement {
+    from {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
