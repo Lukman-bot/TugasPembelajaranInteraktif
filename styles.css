@@ -10,6 +10,9 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background: linear-gradient(45deg, #4CAF50, #2196F3);
+    animation: backgroundAnimation 10s ease infinite alternate;
+    background-size: 200% 200%;
 }
 
 .content {
@@ -39,6 +42,18 @@ body {
 
 .content p {
     text-align: justify;
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes fadeIn {
