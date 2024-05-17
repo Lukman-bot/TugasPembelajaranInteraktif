@@ -14,16 +14,34 @@ function showContent(index) {
 document.addEventListener('DOMContentLoaded', function() {
     showContent(currentContent);
 
-    window.addEventListener('wheel', function(event) {
-        if (event.deltaY > 0) {
-            if (currentContent < totalContents) {
-                currentContent++;
-            }
-        } else {
-            if (currentContent > 1) {
-                currentContent--;
-            }
-        }
-        showContent(currentContent);
-    });
+    window.addEventListener('wheel', handleScroll);
+    window.addEventListener('touchmove', handleTouchMove);
 });
+
+function handleTouchMove(event) {
+    if (event.touches[0].clientY > touchStartY) {
+        if (currentContent < totalContents) {
+            currentContent++;
+        }
+    } else {
+        if (currentContent > 1) {
+            currentContent--;
+        }
+    }
+    showContent(currentContent);
+}
+
+let touchStartY = 0;
+
+function handleScroll(event) {
+    if (event.deltaY > 0) {
+        if (currentContent < totalContents) {
+            currentContent++;
+        }
+    } else {
+        if (currentContent > 1) {
+            currentContent--;
+        }
+    }
+    showContent(currentContent);
+}
