@@ -18,25 +18,27 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
-    animation: fadeIn 1s;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     max-width: 300px;
     width: 90%;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .content h2 {
     margin-top: 0;
+    text-align: center;
 }
 
 .content img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
     border-radius: 10px;
+}
+
+.content p {
+    text-align: justify;
 }
 
 @keyframes fadeIn {
