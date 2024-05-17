@@ -14,34 +14,52 @@ function showContent(index) {
 document.addEventListener('DOMContentLoaded', function() {
     showContent(currentContent);
 
-    window.addEventListener('wheel', handleScroll);
-    window.addEventListener('touchmove', handleTouchMove);
+    // Event listener untuk scroll mouse
+    window.addEventListener('wheel', function(event) {
+        if (event.deltaY > 0) {
+            if (currentContent < totalContents) {
+                currentContent++;
+            }
+        } else {
+            if (currentContent > 1) {
+                currentContent--;
+            }
+        }
+        showContent(currentContent);
+    });
+
+    // Event listener untuk sentuhan (touch event)
+    let initialTouchY = null;
+    window.addEventListener('touchstart', function(event) {
+        initialTouchY = event.touches[0].clientY;
+    });
+
+    window.addEventListener('touchmove', function(event) {
+        if (initialTouchY === null) {
+            return;
+        }
+
+        let currentTouchY = event.touches[0].clientY;
+        let deltaY = currentTouchY - initialTouchY;
+
+        if (deltaY > 50) {
+            // Swipe ke bawah
+            if (currentContent > 1) {
+                currentContent--;
+                showContent(currentContent);
+            }
+            initialTouchY = null;
+        } else if (deltaY < -50) {
+            // Swipe ke atas
+            if (currentContent < totalContents) {
+                currentContent++;
+                showContent(currentContent);
+            }
+            initialTouchY = null;
+        }
+    });
+
+    window.addEventListener('touchend', function() {
+        initialTouchY = null;
+    });
 });
-
-function handleTouchMove(event) {
-    if (event.touches[0].clientY > touchStartY) {
-        if (currentContent < totalContents) {
-            currentContent++;
-        }
-    } else {
-        if (currentContent > 1) {
-            currentContent--;
-        }
-    }
-    showContent(currentContent);
-}
-
-let touchStartY = 0;
-
-function handleScroll(event) {
-    if (event.deltaY > 0) {
-        if (currentContent < totalContents) {
-            currentContent++;
-        }
-    } else {
-        if (currentContent > 1) {
-            currentContent--;
-        }
-    }
-    showContent(currentContent);
-}
