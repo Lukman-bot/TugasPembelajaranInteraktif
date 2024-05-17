@@ -62,4 +62,32 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('touchend', function() {
         initialTouchY = null;
     });
+
+    // Event listener tambahan untuk mendukung scroll pada perangkat mobile
+    let startY = 0;
+    window.addEventListener('touchstart', function(event) {
+        startY = event.touches[0].clientY;
+    });
+
+    window.addEventListener('touchend', function(event) {
+        let endY = event.changedTouches[0].clientY;
+        let distance = startY - endY;
+
+        // Jika jarak pergerakan cukup besar, ganti konten
+        if (Math.abs(distance) > 50) {
+            if (distance > 0) {
+                // Swipe ke atas
+                if (currentContent < totalContents) {
+                    currentContent++;
+                    showContent(currentContent);
+                }
+            } else {
+                // Swipe ke bawah
+                if (currentContent > 1) {
+                    currentContent--;
+                    showContent(currentContent);
+                }
+            }
+        }
+    });
 });
