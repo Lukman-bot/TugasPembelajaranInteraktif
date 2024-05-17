@@ -14,18 +14,23 @@ function showContent(index) {
 document.addEventListener('DOMContentLoaded', function() {
     showContent(currentContent);
 
+    let scrollTimeout; // Variabel untuk menahan timeout scroll
+
     // Event listener untuk scroll mouse
     window.addEventListener('wheel', function(event) {
-        if (event.deltaY > 0) {
-            if (currentContent < totalContents) {
-                currentContent++;
+        clearTimeout(scrollTimeout); // Hapus timeout sebelumnya (jika ada)
+        scrollTimeout = setTimeout(function() {
+            if (event.deltaY > 0) {
+                if (currentContent < totalContents) {
+                    currentContent++;
+                }
+            } else {
+                if (currentContent > 1) {
+                    currentContent--;
+                }
             }
-        } else {
-            if (currentContent > 1) {
-                currentContent--;
-            }
-        }
-        showContent(currentContent);
+            showContent(currentContent);
+        }, 200); // Waktu tunda sebelum menangani scroll
     });
 
     // Event listener untuk sentuhan (touch event)
@@ -44,17 +49,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (deltaY > 50) {
             // Swipe ke bawah
-            if (currentContent > 1) {
-                currentContent--;
-                showContent(currentContent);
-            }
+            clearTimeout(scrollTimeout); // Hapus timeout sebelumnya (jika ada)
+            scrollTimeout = setTimeout(function() {
+                if (currentContent > 1) {
+                    currentContent--;
+                    showContent(currentContent);
+                }
+            }, 200); // Waktu tunda sebelum menangani scroll
             initialTouchY = null;
         } else if (deltaY < -50) {
             // Swipe ke atas
-            if (currentContent < totalContents) {
-                currentContent++;
-                showContent(currentContent);
-            }
+            clearTimeout(scrollTimeout); // Hapus timeout sebelumnya (jika ada)
+            scrollTimeout = setTimeout(function() {
+                if (currentContent < totalContents) {
+                    currentContent++;
+                    showContent(currentContent);
+                }
+            }, 200); // Waktu tunda sebelum menangani scroll
             initialTouchY = null;
         }
     });
@@ -75,19 +86,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Jika jarak pergerakan cukup besar, ganti konten
         if (Math.abs(distance) > 50) {
-            if (distance > 0) {
-                // Swipe ke atas
-                if (currentContent < totalContents) {
-                    currentContent++;
-                    showContent(currentContent);
+            clearTimeout(scrollTimeout); // Hapus timeout sebelumnya (jika ada)
+            scrollTimeout = setTimeout(function() {
+                if (distance > 0) {
+                    // Swipe ke atas
+                    if (currentContent < totalContents) {
+                        currentContent++;
+                        showContent(currentContent);
+                    }
+                } else {
+                    // Swipe ke bawah
+                    if (currentContent > 1) {
+                        currentContent--;
+                        showContent(currentContent);
+                    }
                 }
-            } else {
-                // Swipe ke bawah
-                if (currentContent > 1) {
-                    currentContent--;
-                    showContent(currentContent);
-                }
-            }
+            }, 200); // Waktu tunda sebelum menangani scroll
         }
     });
 });
