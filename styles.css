@@ -1,3 +1,4 @@
+/* CSS */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -28,7 +29,6 @@ body {
     width: 90%;
     margin: 0 auto;
     padding: 20px;
-    animation: fadeInContent 0.5s forwards;
 }
 
 .content h2 {
@@ -52,6 +52,20 @@ body {
     }
 }
 
+/* Animasi untuk konten pertama */
+.first-content {
+    animation: fadeInContent 0.5s forwards;
+}
+
+.first-content h2,
+.first-content img,
+.first-content p,
+.first-content ul {
+    opacity: 0;
+    animation: fadeInElement 1s forwards;
+}
+
+/* Animasi latar belakang */
 @keyframes backgroundAnimation {
     0% {
         background-position: 0% 50%;
@@ -64,19 +78,7 @@ body {
     }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.content h2,
-.content img,
-.content p,
-.content ul {
-    opacity: 0;
-    animation: fadeInElement 1s forwards;
-}
-
+/* Animasi fadeIn */
 @keyframes fadeInContent {
     from {
         transform: translate(50%, -50%);
