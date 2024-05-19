@@ -1,5 +1,5 @@
 let currentContent = 1;
-const totalContents = 5;
+const totalContents = 6;
 
 function showContent(index) {
     document.querySelectorAll('.content').forEach((content, i) => {
