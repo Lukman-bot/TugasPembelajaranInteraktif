@@ -1,9 +1,12 @@
-/* CSS */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     overflow: hidden; /* Prevents scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
@@ -14,21 +17,24 @@ body {
     background: linear-gradient(45deg, #4CAF50, #2196F3);
     animation: backgroundAnimation 10s ease infinite alternate;
     background-size: 200% 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-    display: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+    max-height: 90vh;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    width: 90%;
-    margin: 0 auto;
     padding: 20px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 1s ease, transform 1s ease;
+    overflow-y: auto;
 }
 
 .content h2 {
@@ -52,17 +58,19 @@ body {
     }
 }
 
-/* Animasi untuk konten pertama */
-.first-content {
-    animation: fadeInContent 0.5s forwards;
+.content.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.first-content h2,
-.first-content img,
-.first-content p,
-.first-content ul {
+.content.inactive-up {
     opacity: 0;
-    animation: fadeInElement 1s forwards;
+    transform: translateY(-100%);
+}
+
+.content.inactive-down {
+    opacity: 0;
+    transform: translateY(100%);
 }
 
 /* Animasi latar belakang */
@@ -75,28 +83,5 @@ body {
     }
     100% {
         background-position: 0% 50%;
-    }
-}
-
-/* Animasi fadeIn */
-@keyframes fadeInContent {
-    from {
-        transform: translate(50%, -50%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInElement {
-    from {
-        opacity: 0;
-        transform: translateX(50%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
     }
 }

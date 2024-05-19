@@ -4,9 +4,14 @@ const totalContents = 5;
 function showContent(index) {
     document.querySelectorAll('.content').forEach((content, i) => {
         if (i + 1 === index) {
-            content.style.display = 'block';
+            content.classList.add('active');
+            content.classList.remove('inactive-up', 'inactive-down');
+        } else if (i + 1 < index) {
+            content.classList.remove('active');
+            content.classList.add('inactive-up');
         } else {
-            content.style.display = 'none';
+            content.classList.remove('active');
+            content.classList.add('inactive-down');
         }
     });
 }
