@@ -1,0 +1,27 @@
+.content.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content.inactive-up {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.content.inactive-down {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+/* Animasi latar belakang */
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

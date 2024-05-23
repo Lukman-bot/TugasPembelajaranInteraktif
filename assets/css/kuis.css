@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: auto;
+    overflow: hidden;
+    background: url('../img/background.png') center/cover;
+    animation: backgroundAnimation 50s ease infinite alternate;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+#submit-card {
+    text-align: center;
+}
