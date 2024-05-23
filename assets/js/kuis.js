@@ -79,26 +79,39 @@ function getQuiz() {
 }
 
 function submitQuiz() {
-    const params = new URLSearchParams(window.location.search);
-    const topic = params.get('topic');
-    const quiz = quizzes[topic];
-    let score = 0;
-    const maxScore = 100;
+    const submitButton = document.getElementById('submit');
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sedang Memproses Nilai...';
 
-    quiz.forEach((q, index) => {
-        const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
-        const decodedAnswer = decodeHTML(q.answer);
-        if (selectedOption && selectedOption.value === decodedAnswer) {
-            score++;
-        }
-    });
+    setTimeout(() => {
+        const params = new URLSearchParams(window.location.search);
+        const topic = params.get('topic');
+        const quiz = quizzes[topic];
+        let score = 0;
+        const maxScore = 100;
 
-    const percentageScore = (score / quiz.length) * maxScore;
+        quiz.forEach((q, index) => {
+            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+            const decodedAnswer = decodeHTML(q.answer);
+            if (selectedOption && selectedOption.value === decodedAnswer) {
+                score++;
+            }
+        });
 
-    const roundedScore = Math.round(percentageScore);
+        const percentageScore = (score / quiz.length) * maxScore;
 
-    const result = document.getElementById('result');
-    result.innerText = `Nilai Anda: ${roundedScore} dari ${maxScore}`;
+        const roundedScore = Math.round(percentageScore);
+
+        const result = document.getElementById('result');
+        result.innerText = `Nilai Anda: ${roundedScore} dari ${maxScore}`;
+
+        result.classList.add('birthday-animation');
+
+        setTimeout(() => {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Submit';
+        }, 3000);
+    }, 3000);
 }
 
 // Fungsi untuk mendekode HTML entities
