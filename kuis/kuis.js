@@ -41,6 +41,13 @@ const quizzes = {
     ]
 };
 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 function getQuiz() {
     const params = new URLSearchParams(window.location.search);
     const topic = params.get('topic');
@@ -51,12 +58,14 @@ function getQuiz() {
     if (quiz) {
         quizTitle.innerText = `Kuis ${topic.toUpperCase()}`;
         quiz.forEach((q, index) => {
+            const optionsCopy = [...q.options];
+            shuffle(optionsCopy);
             const questionElem = document.createElement('div');
             questionElem.classList.add('question');
             questionElem.innerHTML = `
                 <p>${index + 1}. ${q.question}</p>
                 <div class="options">
-                    ${q.options.map((option, i) => `
+                    ${optionsCopy.map((option, i) => `
                         <label>
                             <input type="radio" name="question${index}" value="${option}">
                             ${option}
