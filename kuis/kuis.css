@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: auto;
+    overflow: hidden;
+    background: url('../background.png') center/cover;
+    animation: backgroundAnimation 50s ease infinite alternate;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+.card {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#submit-card {
+    text-align: center; /* Mengatur tombol submit ke tengah */
+}
+
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.question {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.question p {
+    margin-top: 0;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+.options label {
+    margin-bottom: 10px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-success {
+    color: rgb(255, 255, 255);
+    background-color: rgb(40, 167, 69);
+    box-shadow: none;
+    border-color: rgb(40, 167, 69);
+}
+
+.btn-warning {
+    color: rgb(31, 45, 61);
+    background-color: rgb(255, 193, 7);
+    box-shadow: none;
+    border-color: rgb(255, 193, 7);
+}
+
+.for-pemrograman {
+    margin-left: 5px;
+}
+
+/* Animasi latar belakang */
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
